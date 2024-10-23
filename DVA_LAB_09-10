@@ -1,0 +1,128 @@
+#Consider the daywise sales given. Depict the sales for 3 weeks using a line chart having chart title as sales report, access label as days and sales in rupees.
+#Plot a bar chart for 7 days showing the sales report of each week. Week1-Sales in Blue, Week2-Sales in Orange, Week3- Sales in Green
+
+# importing the required libraries
+import matplotlib.pyplot as plt
+import numpy as np
+
+# define data values
+x = np.array([1, 2, 3, 4,5,6,7])  # X-axis points
+y = np.array([5000,5900,6500,3500,4000,5300,7900])  # Y-axis points
+
+
+plt.title('Sales Report for Week1')
+plt.xlabel('Days')
+plt.ylabel('Sales in Rupees')    # display
+plt.plot(x, y)  # Plot the chart
+plt.show()
+
+
+
+
+a = np.array([1, 2, 3, 4,5,6,7])  # X-axis points
+b = np.array([4000,3000,5000,5500,3000,4300,5900])# Y-axis points
+plt.title('Sales Report for Week2')
+plt.xlabel('Days')
+plt.ylabel('Sales in Rupees')
+
+
+plt.plot(a,b)  # Plot the chart
+plt.show()
+
+
+
+c = np.array([1, 2, 3, 4,5,6,7])  # X-axis points
+d = np.array([4000,5800,3500,2500,3000,5300,6000])  # Y-axis points
+plt.title('Sales Report for Week3')
+plt.xlabel('Days')
+plt.ylabel('Sales in Rupees')
+
+
+
+plt.plot(c,d)  # Plot the chart
+plt.show()
+
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# set width of bar
+barWidth = 0.25
+fig = plt.subplots(figsize =(12, 8))
+
+# set height of bar
+Week1 = [5000,5900,6500,3500,4000,5300,7900]
+Week2 = [4000,3000,5000,5500,3000,4300,5900]
+Week3 = [4000,5800,3500,2500,3000,5300,6000]
+
+# Set position of bar on X axis
+br1 = np.arange(len(Week1))
+br2 = [x + barWidth for x in br1]
+br3 = [x + barWidth for x in br2]
+
+# Make the plot
+plt.bar(br1, Week1, color ='b', width = barWidth,
+        edgecolor ='grey', label ='Week1')
+plt.bar(br2, Week2, color ='orange', width = barWidth,
+        edgecolor ='grey', label ='Week2')
+plt.bar(br3, Week3, color ='g', width = barWidth,
+        edgecolor ='grey', label ='Week3')
+
+# Adding Xticks
+plt.xlabel('Days', fontweight ='bold', fontsize = 15)
+plt.ylabel('Sales in Rupees', fontweight ='bold', fontsize = 15)
+plt.xticks([r + barWidth for r in range(len(Week1))],
+        ['Day1', 'Day2', 'Day3', 'Day4', 'Day5','Day6', 'Day7'])
+
+plt.legend()
+plt.show()
+
+
+
+#Consider 2 arrays height and weight. {'Name': [] 'Height':[60,61,63,65,61,60] 'Weight':[47,89,52,58,50,47]} Store all these in a dataframe. Generate histogram for the data which shows height and weight.
+
+
+
+data={'Name': ["Bob","John","Marvin","Macen","Jim","Lena"], 'Height':[60,61,63,65,61,60], 'Weight':[47,89,52,58,50,47]} #Explore box plots and pie charts.
+df = pd.DataFrame(data)
+plt.figure(figsize=(10, 5))
+
+# Histogram for Height
+plt.subplot(1, 2, 1)  # 1 row, 2 columns, plot 1
+plt.hist(df['Height'], bins=5, color='skyblue', edgecolor='black')
+plt.title('Height Distribution')
+plt.xlabel('Height')
+plt.ylabel('Frequency')
+
+# Histogram for Weight
+plt.subplot(1, 2, 2)  # 1 row, 2 columns, plot 2
+plt.hist(df['Weight'], bins=5, color='salmon', edgecolor='black')
+plt.title('Weight Distribution')
+plt.xlabel('Weight')
+plt.ylabel('Frequency')
+
+# Show the plots
+plt.tight_layout()  # Adjusts spacing between the plots
+plt.show()
+
+
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+filepath="/content/BasketballGame.csv"
+data=pd.read_csv(filepath)
+print(data)
+
+plt.plot(data['Game'],data['Points Scored'])
+plt.xlabel("Games")
+plt.ylabel("Points Scored")
+plt.show()
+
+
+
+
+
