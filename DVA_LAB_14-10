@@ -1,0 +1,142 @@
+#1st Dataset: Plot the line chart to specify how the team's points scored change over the season.
+
+Plot the bar chart for the attendance for the games through the season.
+
+Create a bar chart showing total points scored in all games and show maximum points scored. Use a bar chart to represent the score in terms of ranges.
+
+Create a bar chart showing the points scored against each opponent. Use a bar chart to visualize attendance based on different opponents.
+Use a bar chart to visualize attendance by considering any attribute of your own.
+
+2nd Dataset:
+Create a bar chart showing total score by each team.
+Plot a chart to visualize the goal for each team.
+Plot a chart to show attendance over match.
+Plot a chart that consists of goals for both home team and away team and also analyse the highest home goals and away goals.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+plt.bar(data['Game'],data['Attendance'])
+plt.xlabel("Games")
+plt.ylabel("Attendance")
+plt.show()
+
+plt.bar(data['Game'],data['Points Scored'])
+plt.xlabel("Games")
+plt.ylabel("Points Scored")
+plt.show()
+
+
+bins = [70,80,90,100,110]  # You can adjust the ranges
+labels = ['70-80', '80-90', '90-100', '100-110']
+
+# Create a new column with the binned ranges
+data['Points Range'] = pd.cut(data['Points Scored'], bins=bins, labels=labels, right=False)
+
+# Count occurrences in each range
+range_counts = data['Points Range'].value_counts().sort_index()
+
+# Create the bar chart
+plt.bar(range_counts.index, range_counts.values)
+plt.xlabel("Points Scored Ranges")
+plt.ylabel("Number of Games")
+plt.title("Games Distribution by Points Scored Ranges")
+plt.xticks(rotation=45)
+plt.show()
+
+
+
+
+
+# set width of bar
+barWidth = 0.25
+fig = plt.subplots(figsize =(12, 8))
+
+# set height of bar
+Week1 = [5000,5900,6500,3500,4000,5300,7900]
+Week2 = [4000,3000,5000,5500,3000,4300,5900]
+Week3 = [4000,5800,3500,2500,3000,5300,6000]
+
+# Set position of bar on X axis
+br1 = np.arange(len(Week1))
+br2 = [x + barWidth for x in br1]
+br3 = [x + barWidth for x in br2]
+
+# Make the plot
+plt.bar(br1, Week1, color ='b', width = barWidth,
+        edgecolor ='grey', label ='Week1')
+plt.bar(br2, Week2, color ='orange', width = barWidth,
+        edgecolor ='grey', label ='Week2')
+plt.bar(br3, Week3, color ='g', width = barWidth,
+        edgecolor ='grey', label ='Week3')
+
+# Adding Xticks
+plt.xlabel('Days', fontweight ='bold', fontsize = 15)
+plt.ylabel('Sales in Rupees', fontweight ='bold', fontsize = 15)
+plt.xticks([r + barWidth for r in range(len(Week1))],
+        ['Day1', 'Day2', 'Day3', 'Day4', 'Day5','Day6', 'Day7'])
+
+plt.legend()
+plt.show()
+
+
+
+
+
+
+import pandas as pd
+import seaborn
+import matplotlib.pyplot as plt
+
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
+
+filepath=("/content/laptopData.csv")
+df=pd.read_csv(filepath)
+
+
+
+scaler = MinMaxScaler()
+
+
+df['Inches'] = pd.to_numeric(df['Inches'], errors='coerce')
+df['Inches'].fillna(df['Inches'].mean(), inplace=True)
+df['Company'].fillna(df['Company'].mode()[0], inplace=True)
+df['Cpu'].fillna(method='bfill', inplace=True)
+df['TypeName'].fillna(method='bfill', inplace=True)
+df['Weight'] = df['Weight'].replace(r'[^0-9.]+', '', regex=True)
+
+# Step 2: Convert to numeric, coercing errors to NaN
+df['Weight'] = pd.to_numeric(df['Weight'], errors='coerce')
+
+# Step 3: Fill NaN values with the mean
+df['Weight'].fillna(df['Weight'].mean(), inplace=True)
+df['Price'].fillna(df['Price'].median(), inplace=True)
+df['OpSys'].fillna(method='bfill', inplace=True)
+df['Gpu'].fillna(method='ffill', inplace=True)
+df['Memory'].fillna(method='ffill', inplace=True)
+df['Ram'].fillna(df['Ram'].mode()[0], inplace=True)
+df['ScreenResolution'].fillna(method='ffill', inplace=True)
+scaler = MinMaxScaler()
+scaler1=StandardScaler()
+df[['Price']] = scaler1.fit_transform(df[['Price']])
+
+
+
+
+# Apply Min-Max scaling to selected columns
+df[['Weight']] = scaler.fit_transform(df[['Weight']])
+print(df.to_string())
+
+
+
+# print(df['Weight'].dtype)
+# unique_weights = df['Weight'].unique()
+# print(unique_weights)
+
+# unique_weights = df['Weight'].unique()
+# print(unique_weights)
+
+
+
