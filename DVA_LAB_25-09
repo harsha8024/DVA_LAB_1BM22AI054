@@ -1,0 +1,23 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read CSV file
+file_path = '/content/cancer patient data sets.csv'  # Replace with your CSV file path
+data = pd.read_csv(file_path)
+
+# Display the first few rows of the data
+print(data.head())
+
+# Plot the data
+# Assuming you want to plot two columns, 'Column1' and 'Column2'
+plt.figure(figsize=(10, 6))
+plt.plot(data['Patient Id'], data['Age'], marker='o', linestyle='-', color='b')
+
+# Customize the plot
+plt.title('Plot of Column2 vs Column1')
+plt.xlabel('Patient Id')
+plt.ylabel('Age')
+plt.grid(True)
+
+# Show the plot
+plt.show()
